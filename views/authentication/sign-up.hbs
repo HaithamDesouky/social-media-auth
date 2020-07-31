@@ -1,6 +1,19 @@
 <form action="/authentication/sign-up" method="POST">
+
+  <label for="input-email">email</label>
+  <input type="text" id="input-email" name="email" placeholder="Your email" />
+
   <label for="input-username">Username</label>
-  <input type="text" id="input-username" name="username" placeholder="Your Username" />
+  <input type="text" id="input-username" name="name" placeholder="Your Username" />
+
+  <label for="select-role">Role</label>
+  <select id="select-role" name="role">
+        <option value="teacher">Teacher</option>
+
+    <option value="student">Student</option>
+    <option value="assistant">Assistant</option>
+
+  </select>
 
   <label for="input-password">Password</label>
   <input type="password" name="password" id="input-password" placeholder="A Strong Password" />

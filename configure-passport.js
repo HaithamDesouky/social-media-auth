@@ -30,30 +30,38 @@ passport.deserializeUser((id, callback) => {
 
 passport.use(
   'sign-up',
-  new LocalStrategy({}, (username, password, callback) => {
-    bcrypt
-      .hash(password, 10)
-      .then(hashAndSalt => {
-        return User.create({
-          username,
-          passwordHash: hashAndSalt
+  new LocalStrategy(
+    { usernameField: 'email', passReqToCallback: true },
+    (req, email, password, callback) => {
+      const name = req.body.name;
+      const role = req.body.role;
+
+      bcrypt
+        .hash(password, 10)
+        .then(hashAndSalt => {
+          return User.create({
+            name,
+            email,
+            role,
+            passwordHash: hashAndSalt
+          });
+        })
+        .then(user => {
+          callback(null, user);
+        })
+        .catch(error => {
+          callback(error);
         });
-      })
-      .then(user => {
-        callback(null, user);
-      })
-      .catch(error => {
-        callback(error);
-      });
-  })
+    }
+  )
 );
 
 passport.use(
   'sign-in',
-  new LocalStrategy({}, (username, password, callback) => {
+  new LocalStrategy({ usernameField: 'email' }, (email, password, callback) => {
     let user;
     User.findOne({
-      username
+      email
     })
       .then(document => {
         user = document;
