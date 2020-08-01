@@ -8,15 +8,22 @@
 
     <nav>
       <a href="/">Home</a>
+     {{#if user}}
+
       <a href="/private/assistant-dashboard">Assistant Dashboard</a>
       <a href="/private/teacher-dashboard">Teacher Dashboard</a>
       <a href="/private/student-dashboard">Student Dashboard</a>
+      {{else}}
+
+      {{/if}}
       {{#if user}}
         <!-- <a href="/">{{user.name}}'s Profile</a> -->
         <form action="/authentication/sign-out" method="POST">
           <button>Sign Out</button>
         </form>
         {{else}}
+        <a href="/auth/google">Login With Google</a>
+        <a href="/auth/slack">Login With Slack</a>
         <a href="/authentication/sign-in">Sign In</a>
         <a href="/authentication/sign-up">Sign Up</a>
       {{/if}}

@@ -21,7 +21,9 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       default: 'student'
-    }
+    },
+    slackID: String,
+    googleID: String
   },
   {
     timestamps: true

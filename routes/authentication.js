@@ -5,9 +5,6 @@ const router = new Router();
 
 const passport = require('passport');
 
-
-
-
 router.get('/sign-up', (req, res, next) => {
   res.render('authentication/sign-up');
 });
@@ -23,6 +20,8 @@ router.post(
 router.get('/sign-in', (req, res, next) => {
   res.render('authentication/sign-in');
 });
+
+
 
 router.post(
   '/sign-in',
